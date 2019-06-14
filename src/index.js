@@ -1,8 +1,15 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
 const app = express();
 
-app.get("/", (req, res) => {
-	return res.send("Ola Mundo");
-});
+mongoose.connect(
+	"mongodb+srv://admin:admin@cluster0-zvrbz.mongodb.net/test?retryWrites=true&w=majority",
+	{
+		useNewUrlParser: true,
+	},
+);
+
+app.use(require("./routes"));
 
 app.listen(3333, () => console.log("Server running...."));
